@@ -1,5 +1,6 @@
 # Explaining Failure Patterns in Multiple Object Tracking (MOT)
 > Sunny Yang, Pu Wang, Mike Pan, Erchi Zhang
+
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
 ## Introduction
 ## Data Description

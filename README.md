@@ -9,6 +9,7 @@ The StreetAware dataset is a high-resolution synchronized multimodal urban scene
 YOLOv8 for object detection and BoT-SORT for object tracking.
 ### Data Labeling
 ### Feature Extraction
+### Resampling
 ### SHAP Explainer
 ## Evaluation
 ## Authors

@@ -29,10 +29,17 @@ Then you are ready to go!
 
 ### Demo
 1. Put your image inside Fixplainer folder.
+```
+<Fixplainer>
+      │ 
+      └── \{your_image\}
+```
+
 2. go inside Fixplainer folder:
 ```
 cd Fixplainer
 ```
+
 3. Execute main.py, write the first argument as your image name, the second argument (optional) as the scale you want your image to be shown in your screen. For example, if you want to analyze test.png, you can run:
 ```
 python3 main.py test.png

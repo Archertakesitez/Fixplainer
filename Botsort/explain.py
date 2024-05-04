@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from produce_plot import make_SHAP
+from Botsort.produce_plot import make_SHAP
 import sys
 
 class ImageSelector:

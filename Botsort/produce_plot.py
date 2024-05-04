@@ -4,8 +4,11 @@ import pickle
 import shap
 import numpy as np
 import pandas as pd
+import os
+
 def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:float,boty:float)->None:
-    with open('pretrained_xgboost.pkl', 'rb') as f:
+    current_directory = os.getcwd()
+    with open(current_directory+'/Botsort/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
     scaled_topx = topx/image_width
     scaled_topy = topy/image_height
@@ -46,7 +49,7 @@ def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:fl
        'g_kurtosis', 'b_kurtosis', 'luminance', 'xmin', 'xmax', 'ymin',
        'ymax']
     X_new = pd.DataFrame(data,index=index)
-    with open('X_train.pkl', 'rb') as f:
+    with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)
     explainer = shap.Explainer(loaded_model,X_train)
     label = loaded_model.predict(X_new)[0]

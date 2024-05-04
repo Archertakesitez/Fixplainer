@@ -8,6 +8,23 @@ Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine L
 The StreetAware dataset is a high-resolution synchronized multimodal urban scene dataset containing more than 8 hours of recordings of busy intersections in Brooklyn, NY.
 ## Getting Started
 ### Installation
+1. Set up with conda environment:
+```
+conda create -n fixplainer_env python=3.9
+conda activate fixplainer_env
+```
+
+2.Clone the repository:
+```
+git clone git@github.com:Archertakesitez/Fixplainer.git
+```
+
+3. Download the packages required:
+```
+cd Fixplainer
+pip3 install -r requirements.txt
+```
+Then you are ready to go!
 ### Demo
 1. Put your image inside Fixplainer folder.
 2. go inside Fixplainer folder:

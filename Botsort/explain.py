@@ -23,6 +23,7 @@ class ImageSelector:
         self.topx, self.topy, self.botx, self.boty = 0, 0, 0, 0
         self.rect_id = None
         self.scale = float(scale)
+        self.root.title("Fixplainer")
         self._init_ui()
 
     def _init_ui(self):

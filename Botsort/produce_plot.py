@@ -53,14 +53,15 @@ def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:fl
     'xmin':1,
     'xmax':1,
     'ymin':1,
-    'ymax':1
+    'ymax':1,
+    'occlusion':1
 }
     # Convert dictionary to DataFrame
     index = ['r_mean', 'g_mean', 'b_mean', 'r_range', 'g_range', 'b_range', 'r_var',
        'g_var', 'b_var', 'x_average', 'y_average', 'height', 'width', 'area',
        'entropy', 'r_skewness', 'g_skewness', 'b_skewness', 'r_kurtosis',
        'g_kurtosis', 'b_kurtosis', 'luminance', 'xmin', 'xmax', 'ymin',
-       'ymax']
+       'ymax', 'occlusion']
     X_new = pd.DataFrame(data,index=index)
     with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)

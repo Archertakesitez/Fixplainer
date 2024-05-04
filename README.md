@@ -42,7 +42,7 @@ python3 main.py test.png 0.5
 ```
 Then the GUI window will show in the scale you acquired.
 
-**3.** Inside the GUI window, you can use your mouse to draw boxes for any objects for analyzing, and the boxes you draw would appear to have white thick dotted lines:
+**3.** Inside the GUI window, you can use your mouse to draw boxes for any objects for analyzing, and the boxes you draw would appear to have thick white dotted lines:
 <p align="center">
   <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example2.png" alt="example2" width="600"/>
   <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example1.png" alt="example1" width="600"/>

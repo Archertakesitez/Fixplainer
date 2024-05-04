@@ -14,7 +14,7 @@ conda create -n fixplainer_env python=3.9
 conda activate fixplainer_env
 ```
 
-2.Clone the repository:
+2. Clone the repository:
 ```
 git clone git@github.com:Archertakesitez/Fixplainer.git
 ```

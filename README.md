@@ -14,13 +14,9 @@ conda create -n fixplainer_env python=3.9
 conda activate fixplainer_env
 ```
 
-**2.** Clone the repository:
+**2.** Install Fixplainer:
 ```
 git clone git@github.com:Archertakesitez/Fixplainer.git
-```
-
-**3.** Download the packages required:
-```
 cd Fixplainer
 pip3 install -r requirements.txt
 ```

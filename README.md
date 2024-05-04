@@ -9,7 +9,7 @@ The StreetAware dataset is a high-resolution synchronized multimodal urban scene
 ## Getting Started
 ### Installation
 ### Demo
-1. Put any image in which you want to see SHAP explanations for failed/successful tracking inside Fixplainer folder.
+1. Put your image inside Fixplainer folder.
 2. go inside Fixplainer folder:
 ```
 cd Fixplainer

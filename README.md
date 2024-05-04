@@ -23,7 +23,7 @@ pip3 install -r requirements.txt
 
 Then you are ready to go!
 
-### Demo 🔥
+### Demo
 **1.** Put your image inside Fixplainer folder.
 ```
 <Fixplainer>
@@ -50,7 +50,7 @@ Then the GUI window will show in the scale you acquired.
 
 **4.** As soon as you release your mouse after drawing the box, the SHAP plot analyzing your selected object will appear:
 
-## Authors
+## Authors 🔥
 - **[Sunny Yang](https://github.com/crimsonsunny22)**
 - **[Pu Wang](https://github.com/Puw242)**
 - **[Mike Pan](https://github.com/Leo10101010)**

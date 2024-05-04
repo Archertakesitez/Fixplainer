@@ -44,7 +44,7 @@ cd Fixplainer
 ```
 python3 main.py test.png
 ```
-      If you want to analyze test.png and scale it down to 0.5*its original size, you can run:
+   If you want to analyze test.png and scale it down to 0.5*its original size, you can run:
 ```
 python3 main.py test.png 0.5
 ```

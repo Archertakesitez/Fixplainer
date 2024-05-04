@@ -24,7 +24,9 @@ git clone git@github.com:Archertakesitez/Fixplainer.git
 cd Fixplainer
 pip3 install -r requirements.txt
 ```
+
 Then you are ready to go!
+
 ### Demo
 1. Put your image inside Fixplainer folder.
 2. go inside Fixplainer folder:

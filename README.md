@@ -2,8 +2,8 @@
 > Sunny Yang, Pu Wang, Mike Pan, Erchi Zhang
 
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
-## Abstract
-## Training Set Description
+## Abstract 🌲
+## Training Set Description 📹
 ### Dataset Source: [StreetAware: A High-Resolution Synchronized Multimodal Urban Scene Dataset](https://drive.google.com/drive/u/1/folders/1BPtiIF8gBOoZANAGkwDjJUYakpCUYHM1)
 The StreetAware dataset is a high-resolution synchronized multimodal urban scene dataset containing more than 8 hours of recordings of busy intersections in Brooklyn, NY.
 ## Getting Started 🚀
@@ -21,9 +21,9 @@ cd Fixplainer
 pip3 install -r requirements.txt
 ```
 
-Then you are ready to go!🔥🔥
+Then you are ready to go!
 
-### Demo
+### Demo 🔥
 **1.** Put your image inside Fixplainer folder.
 ```
 <Fixplainer>

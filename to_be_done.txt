@@ -1,0 +1,12 @@
+These all have to be done:
+
+*fill requirements.txt
+	- note that scikit-learn has to be version 1.2.2 for SMOTE to run on console
+
+*label more data to enrich failure dataset (Sunny and Mike)
+
+*implement train_your_own.py, where user can use their own labeled boxes (json file) to generate classifier and load the model for training. (Erchi and Wang Pu)
+The command line should be like:
+	$python3 train_your_own.py {user's json file}
+
+*change x, y coordinates feature to relative coordinates (Wang Pu's task)

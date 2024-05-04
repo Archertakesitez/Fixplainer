@@ -7,7 +7,8 @@ import pandas as pd
 import os
 
 def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:float,boty:float)->None:
-    """This function aims to extract features from the box plotted by the user in GUI,
+    """
+    This function aims to extract features from the box plotted by the user in GUI,
     and use the pretrained XGBoost model to make prediction for whether the object in the box could 
     be successfully tracked or not, and then use SHAP waterfall plot to explain which feature
     contributes to the failure/success of tracking.

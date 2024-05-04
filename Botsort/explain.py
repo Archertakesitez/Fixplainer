@@ -4,12 +4,14 @@ from Botsort.produce_plot import make_SHAP
 import sys
 
 class ImageSelector:
-    """This class builds a tool that allows user to select boxes inside their uploaded image,
+    """
+    This class builds a tool that allows user to select boxes inside their uploaded image,
     and yield SHAP explanation for while their selected box cannot or can be successfully tracked
     by YOLOv8+BoT-SORT
     """
     def __init__(self, root, image_path:str, scale=1)->None:
-        """set args and call _init_ui.
+        """
+        set args and call _init_ui.
 
         Args:
             root: root window for tkinter
@@ -42,7 +44,8 @@ class ImageSelector:
 
 
     def get_mouse_posn(self, event):
-        """get the mouse's coordinates and draw box
+        """
+        get the mouse's coordinates and draw box
 
         Args:
             event: the mouse click
@@ -52,7 +55,8 @@ class ImageSelector:
                                                     dash=(4,4), fill='', outline='white', width=3, tags = "")
 
     def update_sel_rect(self, event):
-        """update mouse coordinates while moving mouse to draw box
+        """
+        update mouse coordinates while moving mouse to draw box
         
         Args:
             event: the mouse's movement
@@ -61,7 +65,8 @@ class ImageSelector:
         self.canvas.coords(self.rect_id, self.topx, self.topy, self.botx, self.boty)
 
     def on_mouse_release(self, event):
-        """update mouse coordinates when the mouse releases;
+        """
+        update mouse coordinates when the mouse releases;
         then call make_SHAP to produce SHAP explainer plots
 
         Args:
@@ -74,7 +79,8 @@ class ImageSelector:
         
 
 def make_interface():
-    """This function yields the GUI window for user to plot box inside their uploaded image.
+    """
+    This function yields the GUI window for user to plot box inside their uploaded image.
 
     Args:
         arguments 1: image path

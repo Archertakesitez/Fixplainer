@@ -1,0 +1,4 @@
+res/
+.DS_Store
+data/
+yolov8x.pt

@@ -7,7 +7,20 @@ import pandas as pd
 import os
 
 def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:float,boty:float)->None:
-    current_directory = os.getcwd()
+    """This function aims to extract features from the box plotted by the user in GUI,
+    and use the pretrained XGBoost model to make prediction for whether the object in the box could 
+    be successfully tracked or not, and then use SHAP waterfall plot to explain which feature
+    contributes to the failure/success of tracking.
+    
+    Args:
+        image_width: width of the image uploaded
+        image_height: height of the image uploaded
+        topx: x-coordinate of the box's top left corner
+        topy: y-coordinate of the box's top left corner
+        botx: x-coordinate of the box's bottom right corner
+        boty: y-coordinate of the box's bottom right corner
+    """
+    current_directory = os.getcwd()#fetch current repository
     with open(current_directory+'/Botsort/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
     scaled_topx = topx/image_width
@@ -42,7 +55,7 @@ def make_SHAP(image_width:float,image_height:float,topx:float,topy:float,botx:fl
     'ymin':1,
     'ymax':1
 }
-# Convert dictionary to DataFrame
+    # Convert dictionary to DataFrame
     index = ['r_mean', 'g_mean', 'b_mean', 'r_range', 'g_range', 'b_range', 'r_var',
        'g_var', 'b_var', 'x_average', 'y_average', 'height', 'width', 'area',
        'entropy', 'r_skewness', 'g_skewness', 'b_skewness', 'r_kurtosis',

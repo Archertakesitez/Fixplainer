@@ -4,7 +4,18 @@ from Botsort.produce_plot import make_SHAP
 import sys
 
 class ImageSelector:
-    def __init__(self, root, image_path, scale=1):
+    """This class builds a tool that allows user to select boxes inside their uploaded image,
+    and yield SHAP explanation for while their selected box cannot or can be successfully tracked
+    by YOLOv8+BoT-SORT
+    """
+    def __init__(self, root, image_path:str, scale=1)->None:
+        """set args and call _init_ui.
+
+        Args:
+            root: root window for tkinter
+            image_path: image name that user wants to analyze
+            scale: the scale you want your image to be resized in
+        """
         self.root = root
         self.image_path = image_path
         self.topx, self.topy, self.botx, self.boty = 0, 0, 0, 0
@@ -13,6 +24,9 @@ class ImageSelector:
         self._init_ui()
 
     def _init_ui(self):
+        """
+        Initialze the image selector GUI.
+        """
         original_image = Image.open(self.image_path)
         self.width = original_image.width
         self.height = original_image.height
@@ -28,15 +42,31 @@ class ImageSelector:
 
 
     def get_mouse_posn(self, event):
+        """get the mouse's coordinates and draw box
+
+        Args:
+            event: the mouse click
+        """
         self.topx, self.topy = event.x, event.y
         self.rect_id = self.canvas.create_rectangle(self.topx, self.topy, self.topx, self.topy,
                                                     dash=(4,4), fill='', outline='white', width=3, tags = "")
 
     def update_sel_rect(self, event):
+        """update mouse coordinates while moving mouse to draw box
+        
+        Args:
+            event: the mouse's movement
+        """
         self.botx, self.boty = event.x, event.y
         self.canvas.coords(self.rect_id, self.topx, self.topy, self.botx, self.boty)
 
     def on_mouse_release(self, event):
+        """update mouse coordinates when the mouse releases;
+        then call make_SHAP to produce SHAP explainer plots
+
+        Args:
+            event: the mouse's release after finished drawing
+        """
         self.update_sel_rect(event)
         print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
         print(f"{self.img.width()}, {self.img.height()}")
@@ -44,9 +74,11 @@ class ImageSelector:
         
 
 def make_interface():
-    """
-    arguments 1: image path
-    arguments 2 (optional): the scale you want the image to show on your screen
+    """This function yields the GUI window for user to plot box inside their uploaded image.
+
+    Args:
+        arguments 1: image path
+        arguments 2 (optional): the scale you want the image to show on your screen
     """
     if len(sys.argv) == 1:
         print("please provide image path!")

@@ -32,7 +32,7 @@ Then you are ready to go!
 ```
 <Fixplainer>
       │ 
-      └── \{your_image\}
+      └── {your_image}
 ```
 
 2. go inside Fixplainer folder:

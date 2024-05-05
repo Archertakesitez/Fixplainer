@@ -31,7 +31,11 @@ class ImageSelector:
         """
         Initialze the image selector GUI.
         """
-        original_image = Image.open(self.image_path)
+        try:
+            original_image = Image.open(self.image_path)
+        except FileNotFoundError:
+            print("Please enter a valid image path!")
+            sys.exit()
         self.width = original_image.width
         self.height = original_image.height
         resized_image = original_image.resize((int(self.width*self.scale), int(self.height*self.scale)))

@@ -176,11 +176,11 @@ def get_features(
 
 
 if __name__ == "__main__":
-    # get_features(
-    #     labeled_data_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/res/id4.json",
-    #     image_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/tracked_res/chase_1_left_half_9520_9632/img",
-    # )
-    pil_image = Image.open(
-        "/Users/puw/Workspace/Vscode_Python/Bot-sort/res/img/9522.png"
+    get_features(
+        labeled_data_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/res/id4.json",
+        image_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/tracked_res/chase_1_left_half_9520_9632/img",
     )
-    print(get_features(image_path=pil_image, xyxy=[10, 100, 200, 300], save=False))
+    # pil_image = Image.open(
+    #     "/Users/puw/Workspace/Vscode_Python/Bot-sort/res/img/9522.png"
+    # )
+

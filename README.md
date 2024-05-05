@@ -49,7 +49,7 @@ Then the GUI window will show in the scale you acquired.
 </p>
 
 **4.** As soon as you release your mouse after drawing the box, the SHAP plot analyzing your selected object will appear:
-<p align = "center>
+<p align = "center">
       <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example3.png" alt="example3" width="600"/>
 </p>
 

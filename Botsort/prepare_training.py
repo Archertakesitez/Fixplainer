@@ -16,7 +16,7 @@ def make_classifier(csv_path="data_feature.csv")->None:
     Args:
         csv_path: the path of csv that contains features of boxes (not including occlusions)
     """
-    directory = os.getcwd()+"/"
+    directory = os.getcwd()+"/Botsort/"
     csv_path = directory+csv_path
     save_path_model = directory+"pretrained_tools/pretrained_xgboost.pkl"
     save_path_x_train = directory+"pretrained_tools/X_train.pkl"
@@ -33,7 +33,7 @@ def make_classifier(csv_path="data_feature.csv")->None:
 
 def output_df(csv_path:str)->pd.DataFrame:
     """
-    This function output a dataframe that appends the occlusion column
+    This function output a dataframe that appends the inter_objects_occlusion column
 
     Args:
         csv_path: the string denoting the path of csv file which contains the features of boxes
@@ -58,7 +58,7 @@ def output_df(csv_path:str)->pd.DataFrame:
                         curr_list[i] += 1
                         curr_list[j] += 1
         occlusion_list.extend(curr_list)
-    df['occlusion'] = occlusion_list
+    df['inter_objects_occlusion'] = occlusion_list
     return df
 
 def if_occlusion(df: pd.DataFrame,i:int,j:int)->bool:
@@ -87,3 +87,4 @@ def if_occlusion(df: pd.DataFrame,i:int,j:int)->bool:
             #when j's up side is inbetween i's height or when j's down side is inbetween i's height
             return True
     return False
+make_classifier()

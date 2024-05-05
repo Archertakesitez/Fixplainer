@@ -30,7 +30,7 @@ def make_SHAP(xyxy:list[float], image:PIL.Image.Image, occlusion:int)->None:
         loaded_model = pickle.load(f)
     ret_df = get_features(image_path=image, xyxy = xyxy, save = False)
     ret_df.drop(['frame','cls'], axis = 1, inplace = True)
-    ret_df['occlusion'] = occlusion
+    ret_df['inter_objects_occlusion'] = occlusion
     with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)
     explainer = shap.Explainer(loaded_model,X_train)

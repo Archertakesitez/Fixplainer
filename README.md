@@ -1,4 +1,4 @@
-# Fixplainer: Failure Explainer for Multiple Object Tracking (MOT)
+# Fixplainer: Failure Explainer for Multiple Object Tracking (MOT) --In progress!!
 > Sunny Yang, Pu Wang, Mike Pan, Erchi Zhang
 
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning

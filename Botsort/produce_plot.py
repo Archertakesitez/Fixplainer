@@ -28,15 +28,8 @@ def make_SHAP(xyxy:list[float], image:PIL.Image.Image, occlusion:int)->None:
     current_directory = os.getcwd()#fetch current repository
     with open(current_directory+'/Botsort/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
-    ret_df = get_features(image_path=image, xyxy = xyxy, save = True)
+    ret_df = get_features(image_path=image, xyxy = xyxy, save = False)
     ret_df.drop(['frame','cls'], axis = 1, inplace = True)
-    # Convert dictionary to DataFrame
-    index = ['r_mean', 'g_mean', 'b_mean', 'r_range', 'g_range', 'b_range', 'r_var',
-       'g_var', 'b_var', 'x_average', 'y_average', 'height', 'width', 'area',
-       'entropy', 'r_skewness', 'g_skewness', 'b_skewness', 'r_kurtosis',
-       'g_kurtosis', 'b_kurtosis', 'luminance', 'xmin', 'xmax', 'ymin',
-       'ymax', 'occlusion']
-    #X_new = pd.DataFrame(ret_df,index=index)
     ret_df['occlusion'] = occlusion
     with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)

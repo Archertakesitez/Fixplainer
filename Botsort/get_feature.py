@@ -1,4 +1,5 @@
 import json
+import PIL.Image
 import numpy as np
 from scipy.stats import skew, kurtosis
 from skimage.color import rgb2gray
@@ -10,11 +11,12 @@ import pandas as pd
 import os
 from PIL import Image
 import PIL
+from skimage import util
 
 
 def get_features(
+    image_path= PIL.Image.Image,
     labeled_data_path="",
-    image_path= "",
     old_data_path="",
     output_path="",
     save=True,
@@ -71,6 +73,7 @@ def get_features(
                     skewness = skew(data_oned, axis=0)
                     kurt = kurtosis(data_oned, axis=0)
                     gray_img = rgb2gray(target)
+                    uint8_gray_image = util.img_as_ubyte(gray_img)
 
                     b_mean = rgb_mean[0]
                     g_mean = rgb_mean[1]
@@ -84,7 +87,7 @@ def get_features(
                     x_average = (xmin + xmax) / (2 * im_w)
                     y_average = (ymin + ymax) / (2 * im_h)
                     area = height * width
-                    myentropy = np.mean(entropy(gray_img, disk(5)))
+                    myentropy = np.mean(entropy(uint8_gray_image, disk(5)))
                     b_skewness = skewness[0]
                     g_skewness = skewness[1]
                     r_skewness = skewness[2]

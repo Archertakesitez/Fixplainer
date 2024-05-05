@@ -31,7 +31,7 @@ Then you are ready to go!
       └── {your_image}
 ```
 
-**2.** Execute main.py, write the first argument as your image name, the second argument as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, and the third argument (optional) as the scale you want your image to be shown in your screen. For example, if you want to analyze test.png, where no detected objects are present inside the box area you will be drawing, you can run:
+**2.** Execute main.py, write the _first argument_ as your image name, the _second argument_ as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, and the _third argument_ (optional) as the scale you want your image to be shown in your screen. For example, if you want to analyze test.png, where no detected objects are present inside the box area you will be drawing, you can run:
 ```
 cd Fixplainer
 python3 main.py test.png 0

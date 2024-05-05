@@ -31,14 +31,14 @@ Then you are ready to go!
       └── {your_image}
 ```
 
-**2.** Execute main.py, write the first argument as your image name, the second argument (optional) as the scale you want your image to be shown in your screen. For example, if you want to analyze test.png, you can run:
+**2.** Execute main.py, write the first argument as your image name, the second argument as the inter_objects_occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, and the third argument (optional) as the scale you want your image to be shown in your screen. For example, if you want to analyze test.png, where no detected objects are present inside the box area you will be drawing, you can run:
 ```
 cd Fixplainer
-python3 main.py test.png
+python3 main.py test.png 0
 ```
-   If you want to analyze test.png and scale it down to 0.5*its original size, you can run:
+   If you want to analyze test.png, where one detected objects are present inside the box area you will be drawing, and you want to scale the image down to 0.5*its original size, you can run:
 ```
-python3 main.py test.png 0.5
+python3 main.py test.png 1 0.5
 ```
 Then the GUI window will show in the scale you acquired.
 

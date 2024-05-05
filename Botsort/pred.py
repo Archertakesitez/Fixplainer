@@ -12,12 +12,20 @@ from skimage.morphology import disk
 from sklearn.decomposition import PCA
 
 
-# model = YOLO('yolov8n.pt')
-# model = YOLO('yolov8s.pt')
-model = YOLO("yolov8x.pt")
-
-
-def track(video_path, output_path="", start_time=0, end_time=-1, frame_extract=3):
+def track(
+    video_path, output_path="", start_time=0, end_time=-1, frame_extract=3, model_type="x"
+):
+    model_supported = ["x", "n", "s"]
+    if model_type not in model_supported:
+        print('Model not supported.')
+    elif model_supported == 'n':
+        model = YOLO('yolov8n.pt')
+    elif model_type=='s':
+        model = YOLO('yolov8s.pt')
+    elif model_type=='x':
+        model = YOLO("yolov8x.pt")
+    else:
+        print('Cannot crate model.')
     video_path = video_path
     start_time = start_time
     end_time = end_time

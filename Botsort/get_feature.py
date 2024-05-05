@@ -9,16 +9,17 @@ import cv2
 import pandas as pd
 import os
 from PIL import Image
+import PIL
 
 
 def get_features(
     labeled_data_path="",
-    image_path="",
+    image_path= "",
     old_data_path="",
     output_path="",
     save=True,
     xyxy=[],
-):
+)->None:
     im_w = 0
     im_h = 0
     if old_data_path != "":
@@ -82,7 +83,7 @@ def get_features(
                     r_var = rgb_var[2]
                     x_average = (xmin + xmax) / (2 * im_w)
                     y_average = (ymin + ymax) / (2 * im_h)
-                    area = height * width / im_h / im_w
+                    area = height * width
                     myentropy = np.mean(entropy(gray_img, disk(5)))
                     b_skewness = skewness[0]
                     g_skewness = skewness[1]

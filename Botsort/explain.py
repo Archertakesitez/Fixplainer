@@ -9,7 +9,7 @@ class ImageSelector:
     and yield SHAP explanation for while their selected box cannot or can be successfully tracked
     by YOLOv8+BoT-SORT
     """
-    def __init__(self, root, image_path:str, scale=1)->None:
+    def __init__(self, root, image_path:str, occlusion:int, scale=1)->None:
         """
         set args and call _init_ui.
 
@@ -24,6 +24,7 @@ class ImageSelector:
         self.rect_id = None
         self.scale = float(scale)
         self.root.title("Fixplainer")
+        self.occlusion = occlusion
         self._init_ui()
 
     def _init_ui(self):
@@ -34,6 +35,7 @@ class ImageSelector:
         self.width = original_image.width
         self.height = original_image.height
         resized_image = original_image.resize((int(self.width*self.scale), int(self.height*self.scale)))
+        self.resized = resized_image
         self.img = ImageTk.PhotoImage(resized_image)
         self.canvas = tk.Canvas(self.root, width=self.width * self.scale, height=self.height * self.scale,
                                 borderwidth=0, highlightthickness=0)
@@ -76,7 +78,7 @@ class ImageSelector:
         self.update_sel_rect(event)
         print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
         print(f"{self.img.width()}, {self.img.height()}")
-        make_SHAP(image_width=self.width,image_height=self.height,topx=self.topx,topy=self.topy,botx=self.botx,boty=self.boty)
+        make_SHAP(xyxy = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion)
         
 
 def make_interface():
@@ -87,18 +89,21 @@ def make_interface():
         arguments 1: image path
         arguments 2 (optional): the scale you want the image to show on your screen
     """
-    if len(sys.argv) == 1:
-        print("please provide image path!")
-    elif len(sys.argv) == 2:
-        image_path = sys.argv[1]
-        root = tk.Tk()
-        app = ImageSelector(root, image_path=image_path)
-        root.mainloop()
+    if len(sys.argv) == 1 or len(sys.argv) == 2:
+        print(len(sys.argv))
+        print("please provide image path and occlusion!")
     elif len(sys.argv) == 3:
         image_path = sys.argv[1]
-        scale = sys.argv[2]
+        occlusion = sys.argv[2]
         root = tk.Tk()
-        app = ImageSelector(root, image_path=image_path, scale = scale)
+        app = ImageSelector(root, image_path=image_path, occlusion = int(occlusion))
+        root.mainloop()
+    elif len(sys.argv) == 4:
+        image_path = sys.argv[1]
+        occlusion = sys.argv[2]
+        scale = sys.argv[3]
+        root = tk.Tk()
+        app = ImageSelector(root, image_path=image_path, occlusion = int(occlusion), scale = scale)
         root.mainloop()
 
 

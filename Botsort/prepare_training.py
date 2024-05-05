@@ -10,7 +10,7 @@ import os
 
 def make_classifier(csv_path="data_feature.csv")->None:
     """
-    This function train XGBoost classifier on our data and load the model
+    This function train XGBoost classifier on csv feature data and load the model
     and X train dataset
 
     Args:

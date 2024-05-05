@@ -19,6 +19,8 @@ def get_features(
     save=True,
     xyxy=[],
 ):
+    im_w = 0
+    im_h = 0
     if old_data_path != "":
         res = pd.read_csv(
             old_data_path,
@@ -30,27 +32,34 @@ def get_features(
     if output_path != "" and not os.path.exists(output_path):
         os.makedirs(output_path)
 
-    if isinstance(Image.Image, image_path):
-        data = {"-1": [{"yxyx": xyxy}], "class": 1}
+    if isinstance(image_path, Image.Image):
+        data = {-1: [{"yxyx": xyxy, "class": 1}]}
+        im_h, im_w = image_path.size
+
     else:
         with open(labeled_data_path, "r") as f:
             # 从文件中加载 JSON 数据并解析为 Python 字典
             data = json.load(f)
+        files = os.listdir(image_path)
+        for file in files:
+            if file.endswith(".png"):
+                im_h, im_w, _ = cv2.imread(image_path + "/" + file).shape
+                break
 
     for key, value in data.items():
         for v in value:
             if "class" in v.keys() and v["class"] == 1:
                 if "id" not in v.keys():
-                    if v == -1:
+                    if key == -1:
                         image = cv2.cvtColor(np.array(image_path), cv2.COLOR_RGB2BGR)
                     else:
-                        image = cv2.imread(image_path + str(key) + ".png")
+                        image = cv2.imread(image_path + "/" + str(key) + ".png")
                     xmin = int(v["yxyx"][0])
                     ymin = int(v["yxyx"][1])
                     xmax = int(v["yxyx"][2])
                     ymax = int(v["yxyx"][3])
-                    height = ymax - ymin
-                    width = xmax - xmin
+                    height = (ymax - ymin) / im_h
+                    width = (xmax - xmin) / im_w
                     target = image[ymin:ymax, xmin:xmax]
                     rgb_mean = np.mean(target, axis=(0, 1))
                     min_values = np.min(target, axis=(0, 1))
@@ -71,9 +80,9 @@ def get_features(
                     b_var = rgb_var[0]
                     g_var = rgb_var[1]
                     r_var = rgb_var[2]
-                    x_average = (xmin + xmax) / (2 * width)
-                    y_average = (ymin + ymax) / (2 * height)
-                    area = height * width
+                    x_average = (xmin + xmax) / (2 * im_w)
+                    y_average = (ymin + ymax) / (2 * im_h)
+                    area = height * width / im_h / im_w
                     myentropy = np.mean(entropy(gray_img, disk(5)))
                     b_skewness = skewness[0]
                     g_skewness = skewness[1]
@@ -105,11 +114,11 @@ def get_features(
                 ymin = int(v["yxyx"][1])
                 xmax = int(v["yxyx"][2])
                 ymax = int(v["yxyx"][3])
-                height = ymax - ymin
-                width = xmax - xmin
-                x_average = v["yxhw"][0] / width
-                y_average = v["yxhw"][1] / height
-                area = v["area"]
+                height = (ymax - ymin) / im_h
+                width = (xmax - xmin) / im_w
+                x_average = v["yxhw"][0] / im_w
+                y_average = v["yxhw"][1] / im_h
+                area = v["area"] / im_w / im_h
                 myentropy = v["ebtropy"]
                 b_skewness = v["skewness"][0]
                 g_skewness = v["skewness"][1]
@@ -143,10 +152,10 @@ def get_features(
                 "g_kurtosis": g_kurt,
                 "b_kurtosis": b_kurt,
                 "luminance": luminance,
-                "xmin": xmin / width,
-                "xmax": xmax / width,
-                "ymin": ymin / height,
-                "ymax": ymax / height,
+                "xmin": xmin / im_w,
+                "xmax": xmax / im_w,
+                "ymin": ymin / im_h,
+                "ymax": ymax / im_h,
             }
             res = pd.concat([res, pd.DataFrame([dict])], ignore_index=True)
 
@@ -167,4 +176,11 @@ def get_features(
 
 
 if __name__ == "__main__":
-    get_features("/Users/puw/Workspace/Vscode_Python/Bot-sort/res/id4.json")
+    # get_features(
+    #     labeled_data_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/res/id4.json",
+    #     image_path="/Users/puw/Workspace/Vscode_Python/Bot-sort/tracked_res/chase_1_left_half_9520_9632/img",
+    # )
+    pil_image = Image.open(
+        "/Users/puw/Workspace/Vscode_Python/Bot-sort/res/img/9522.png"
+    )
+    print(get_features(image_path=pil_image, xyxy=[10, 100, 200, 300], save=False))

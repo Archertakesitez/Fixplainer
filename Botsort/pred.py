@@ -10,7 +10,7 @@ from skimage.color import rgb2gray
 from skimage.filters.rank import entropy
 from skimage.morphology import disk
 from sklearn.decomposition import PCA
-
+import os
 
 def track(
     video_path, output_path="", start_time=0, end_time=-1, frame_extract=3, model_type="x"
@@ -164,8 +164,9 @@ def track(
 
 
 if __name__ == "__main__":
+    current_directory = os.getcwd()
     track(
-        "/Users/puw/Workspace/Vscode_Python/Bot-sort/data/left_half.mp4",
+        "../data/left_half.mp4",#note time limit out
         start_time=0,
         end_time=5,
     )

@@ -1,2 +1,3 @@
 #ignore file under data directory
 data/
+*.pt

@@ -120,6 +120,7 @@ def get_features_single(
     cv2.destroyAllWindows()
     return res
 
+#tested!
 def get_features_multi(
     multi_img_path: str,
     labeled_json_path: str,

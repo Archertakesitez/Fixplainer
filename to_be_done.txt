@@ -5,11 +5,8 @@ These all have to be done:
 
 *label more data to enrich failure dataset (Sunny and Mike)
 
-*implement train_your_own.py, where user can use their own labeled boxes (json file) to generate classifier and load the model for training. (Erchi and Wang Pu)
-用户输入 mp4. command line: python3 {method}.py {video}.mp4 {YOLOv8参数} 生成：可以用来标记的JSON
-train_your_own.py:
-输入标记完的JSON, ->csv->dataframe->train model->save model!
-之后就可以用自己保存的model来生成GUI
+*add shap force plot for single isntance
 
-The command line should be like:
-	$python3 train_your_own.py {user's json file}
+*add annotation guideline
+
+*add tutorials for gen_box.py and train_your_own.py

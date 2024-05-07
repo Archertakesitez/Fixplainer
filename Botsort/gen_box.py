@@ -11,10 +11,29 @@ from skimage.filters.rank import entropy
 from skimage.morphology import disk
 from sklearn.decomposition import PCA
 import os
+import argparse
+#SUB ENTRY FILE (parse video and generate json for labeling)
 
+#tested!
 def track(
-    video_path, output_path="", start_time=0, end_time=-1, frame_extract=3, model_type="x"
-):
+    video_path: str, output_path: str, start_time=0, end_time=-1, frame_extract=3, model_type="x"
+)->None:
+    """
+    This function parse a given video and output a directory tracked_res which contains
+    all files including the json file that you have to label
+
+    Args:
+        video_path: video to be parsed
+        output_path: output file location
+        start_time: the time(in second) that you want to start truncating the video. Default is 0
+        end_time: the time(in second) that you want to finish truncating the video. Default is 0
+        frame_extract: a number indicating in how many video frames do you save a video frame.
+        For example, default frame_extract = 3 means you save a video frame for every three video frames.
+        model_type: the type of YOLO model that the user wants to use. Default is x
+    Void:
+        output a tracked_res file that contains json file and annotated images for you to label the json file
+    """
+
     model_supported = ["x", "n", "s"]
     if model_type not in model_supported:
         print('Model not supported.')
@@ -25,7 +44,8 @@ def track(
     elif model_type=='x':
         model = YOLO("yolov8x.pt")
     else:
-        print('Cannot crate model.')
+        print('Cannot create model.')
+
     video_path = video_path
     start_time = start_time
     end_time = end_time
@@ -46,7 +66,7 @@ def track(
         end_frame = end_time * fps
     output_path = (
         output_path
-        + "tracked_res/chase_1_left_half_"
+        + "tracked_res/frame_"
         + str(start_frame)
         + "_"
         + str(end_frame)
@@ -162,11 +182,27 @@ def track(
     res_video.release()
     cv2.destroyAllWindows()
 
+#tested!
+def main():
+    parser = argparse.ArgumentParser(description='let\'s generate boxes for your video!')
+    parser.add_argument('video_path', help='Video input path')
+    parser.add_argument('output_path', help = 'your output directory')
+    parser.add_argument('--start_time', type = int, default = 0, help='from which second do you start truncating?')
+    parser.add_argument('--end_time', type = int, default = -1, help='to which second do you finish truncating?')
+    parser.add_argument('--frame_extract', type = int, default = 3, help = 'in how many video frames do you want to save one frame?')
+    parser.add_argument('--model_type', default = 'x', help = 'which YOLO pretrained model do you use? choose from x, n, and s.')
+    
+    args = parser.parse_args()
+    video_path = args.video_path
+    output_path = args.output_path
+    start_time = args.start_time
+    end_time = args.end_time
+    frame_extract = args.frame_extract
+    model_type = args.model_type
+    track(video_path=video_path, output_path=output_path, start_time=start_time, end_time=end_time,
+          frame_extract=frame_extract, model_type=model_type)
 
+#tested!
 if __name__ == "__main__":
-    current_directory = os.getcwd()
-    track(
-        "../data/left_half.mp4",#note time limit out
-        start_time=0,
-        end_time=5,
-    )
+    #track(video_path="labeled_data/chase_1_left_half_9520_9632/res.mp4", output_path="suibian/", frame_extract=3)
+    main()

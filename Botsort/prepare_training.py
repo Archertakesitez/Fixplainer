@@ -7,7 +7,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import train_test_split
 from collections import Counter
 import os
-
+#tested!
 def make_classifier(csv_path="data_feature.csv")->None:
     """
     This function train XGBoost classifier on csv feature data and load the model
@@ -16,11 +16,33 @@ def make_classifier(csv_path="data_feature.csv")->None:
     Args:
         csv_path: the path of csv that contains features of boxes (not including occlusions)
     """
-    directory = os.getcwd()+"/Botsort/"
+    directory = os.getcwd()+"/"
     csv_path = directory+csv_path
     save_path_model = directory+"pretrained_tools/pretrained_xgboost.pkl"
     save_path_x_train = directory+"pretrained_tools/X_train.pkl"
     df = output_df(csv_path=csv_path)
+    X, y = df.drop(labels=['frame','cls'],axis=1), df['cls']
+    #resample to boost tracking failure samples
+    oversample = SMOTE()
+    X, y = oversample.fit_resample(X, y)
+    model = xgboost.XGBClassifier().fit(X, y)
+    with open(save_path_model, 'wb') as f:
+        pickle.dump(model, f)
+    with open(save_path_x_train, 'wb') as f:
+        pickle.dump(X, f)
+
+#tested!
+def make_classifier_custom(df:pd.DataFrame)->None:
+    """
+    This function trains XGBoost classifier on custom pd dataframe and load the model and X train dataset
+
+    Args:
+        df: the pandas dataframe with labeled features. provided by user.
+    """
+    directory = os.getcwd()+"/"
+    save_path_model = directory+"pretrained_tools/pretrained_xgboost_cus.pkl"
+    save_path_x_train = directory+"pretrained_tools/X_train_cus.pkl"
+    df = df
     X, y = df.drop(labels=['frame','cls'],axis=1), df['cls']
     #resample to boost tracking failure samples
     oversample = SMOTE()
@@ -87,4 +109,4 @@ def if_occlusion(df: pd.DataFrame,i:int,j:int)->bool:
             #when j's up side is inbetween i's height or when j's down side is inbetween i's height
             return True
     return False
-make_classifier()
+

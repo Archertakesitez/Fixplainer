@@ -6,11 +6,11 @@ import shap
 import numpy as np
 import pandas as pd
 import os
-from Botsort.get_feature import get_features
+from Botsort.get_feature import get_features_single
 import PIL
 
-
-def make_SHAP(xyxy:list[float], image:PIL.Image.Image, occlusion:int)->None:
+#tested!
+def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int)->None:
     """
     This function aims to extract features from the box plotted by the user in GUI,
     and use the pretrained XGBoost model to make prediction for whether the object in the box could 
@@ -28,8 +28,8 @@ def make_SHAP(xyxy:list[float], image:PIL.Image.Image, occlusion:int)->None:
     current_directory = os.getcwd()#fetch current repository
     with open(current_directory+'/Botsort/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
-    ret_df = get_features(image_path=image, xyxy = xyxy, save = False)
-    ret_df.drop(['frame','cls'], axis = 1, inplace = True)
+    ret_df = get_features_single(single_img=image, yxyx = yxyx)
+    #ret_df.drop(['frame','cls'], axis = 1, inplace = True)
     ret_df['inter_objects_occlusion'] = occlusion
     with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)

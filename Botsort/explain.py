@@ -82,7 +82,7 @@ class ImageSelector:
         self.update_sel_rect(event)
         print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
         print(f"{self.img.width()}, {self.img.height()}")
-        make_SHAP(xyxy = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion)
+        make_SHAP(yxyx = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion)
         
 
 def make_interface():

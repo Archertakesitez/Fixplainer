@@ -10,7 +10,7 @@ from Botsort.get_feature import get_features_single
 import PIL
 
 #tested!
-def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int)->None:
+def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int, plot_type = "waterfall")->None:
     """
     This function aims to extract features from the box plotted by the user in GUI,
     and use the pretrained XGBoost model to make prediction for whether the object in the box could 
@@ -37,9 +37,15 @@ def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int)->None:
     label = loaded_model.predict(ret_df)[0]
     output = "successful" if label == 0 else "failed"
     shap_values = explainer(ret_df)
-    shap.plots.waterfall(shap_values[0],show=False)
-    plt.title(f"SHAP expalanations for this {output} tracking")
-    plt.gcf().set_size_inches(8, 4)
-    plt.tight_layout()
-    plt.show()
-    
+    if plot_type == "waterfall":
+        shap.plots.waterfall(shap_values[0],show=False)
+        plt.title(f"SHAP expalanations for this {output} tracking")
+        plt.gcf().set_size_inches(8, 4)
+        plt.tight_layout()
+        plt.show()
+    else:
+        shap.decision_plot(base_value = explainer.expected_value, shap_values = shap_values.values[0], feature_names = X_train.columns.tolist(), show = False)
+        plt.title(f"SHAP expalanations for this {output} tracking")
+        plt.gcf().set_size_inches(8, 6)
+        plt.tight_layout()
+        plt.show()

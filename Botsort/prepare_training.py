@@ -53,6 +53,7 @@ def make_classifier_custom(df:pd.DataFrame)->None:
     with open(save_path_x_train, 'wb') as f:
         pickle.dump(X, f)
 
+#tested!
 def output_df(csv_path:str)->pd.DataFrame:
     """
     This function output a dataframe that appends the inter_objects_occlusion column
@@ -82,7 +83,7 @@ def output_df(csv_path:str)->pd.DataFrame:
         occlusion_list.extend(curr_list)
     df['inter_objects_occlusion'] = occlusion_list
     return df
-
+#tested!
 def if_occlusion(df: pd.DataFrame,i:int,j:int)->bool:
     """
     This function check if there two boxes in a frame appears to be occluded with each other

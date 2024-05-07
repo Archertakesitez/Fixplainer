@@ -2,14 +2,16 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from Botsort.produce_plot import make_SHAP
 import sys
+import argparse
 
+#tested!
 class ImageSelector:
     """
     This class builds a tool that allows user to select boxes inside their uploaded image,
     and yield SHAP explanation for while their selected box cannot or can be successfully tracked
     by YOLOv8+BoT-SORT
     """
-    def __init__(self, root, image_path:str, occlusion:int, scale=1)->None:
+    def __init__(self, root, image_path:str, occlusion:int, scale=1, plot_type = "waterfall")->None:
         """
         set args and call _init_ui.
 
@@ -25,6 +27,7 @@ class ImageSelector:
         self.scale = float(scale)
         self.root.title("Fixplainer")
         self.occlusion = occlusion
+        self.plot_type = plot_type
         self._init_ui()
 
     def _init_ui(self):
@@ -80,34 +83,28 @@ class ImageSelector:
             event: the mouse's release after finished drawing
         """
         self.update_sel_rect(event)
-        print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
-        print(f"{self.img.width()}, {self.img.height()}")
-        make_SHAP(yxyx = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion)
+        #print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
+        #print(f"{self.img.width()}, {self.img.height()}")
+        make_SHAP(yxyx = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion, plot_type=self.plot_type)
         
 
 def make_interface():
     """
     This function yields the GUI window for user to plot box inside their uploaded image.
-
-    Args:
-        arguments 1: image path
-        arguments 2 (optional): the scale you want the image to show on your screen
+    Parameters explanation are included in the help messages.
     """
-    if len(sys.argv) == 1 or len(sys.argv) == 2:
-        print(len(sys.argv))
-        print("please provide image path and occlusion!")
-    elif len(sys.argv) == 3:
-        image_path = sys.argv[1]
-        occlusion = sys.argv[2]
-        root = tk.Tk()
-        app = ImageSelector(root, image_path=image_path, occlusion = int(occlusion))
-        root.mainloop()
-    elif len(sys.argv) == 4:
-        image_path = sys.argv[1]
-        occlusion = sys.argv[2]
-        scale = sys.argv[3]
-        root = tk.Tk()
-        app = ImageSelector(root, image_path=image_path, occlusion = int(occlusion), scale = scale)
-        root.mainloop()
+    parser = argparse.ArgumentParser(description='let\'s set parameters for producing plot!')
+    parser.add_argument('image_path', help='image path that contains the object you want to analyze for MOT failure/success')
+    parser.add_argument('occlusion', type=int, help = 'how many objects that can be detected are overlapping with the box you want to draw?')
+    parser.add_argument('--scale', type = float, default = 1, help='in which scale do you want your image to be shown?')
+    parser.add_argument('--plot_type', default = "waterfall", help='the shap plot you want to produce--waterfall or decision? default is waterfall plot')
 
+    args = parser.parse_args()
+    image_path = args.image_path
+    occlusion = args.occlusion
+    scale = args.scale
+    plot_type = args.plot_type
+    root = tk.Tk()
+    app = ImageSelector(root=root, image_path=image_path, occlusion=occlusion, scale = scale, plot_type = plot_type)
+    root.mainloop()
 

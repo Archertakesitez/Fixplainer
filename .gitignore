@@ -1,3 +1,4 @@
 #ignore file under data directory
 data/
 *.pt
+__pycache__/

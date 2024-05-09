@@ -2,3 +2,5 @@
 data/
 *.pt
 __pycache__/
+.metals/
+.vscode/

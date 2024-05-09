@@ -1,0 +1,12 @@
+2024.05.08 16:39:52 INFO  Started: Metals version 1.3.0 in folders '/Users/erchizhang/Desktop/研究生/semester2/3001/Fixplainer' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@2dfff9c6]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@5f3505d5]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@2dfff9c6]
+2024.05.08 16:39:53 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2024.05.08 16:39:53 WARN  no build tool detected in workspace '/Users/erchizhang/Desktop/研究生/semester2/3001/Fixplainer'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2024.05.08 16:39:53 WARN  Build server is not auto-connectable.
+2024.05.09 00:37:50 INFO  Shutting down server
+2024.05.09 00:37:50 INFO  shutting down Metals
+2024.05.09 00:37:50 INFO  Exiting server

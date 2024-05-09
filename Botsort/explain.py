@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from Botsort.produce_plot import make_SHAP
+from produce_plot import make_SHAP
 import sys
 import argparse
 

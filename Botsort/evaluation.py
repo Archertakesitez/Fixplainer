@@ -1,0 +1,3 @@
+from prepare_training import make_classifier_test
+
+make_classifier_test()

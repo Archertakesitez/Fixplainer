@@ -6,7 +6,7 @@ import shap
 import numpy as np
 import pandas as pd
 import os
-from Botsort.get_feature import get_features_single
+from get_feature import get_features_single
 import PIL
 
 #tested!
@@ -26,12 +26,13 @@ def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int, plot_type 
         boty: y-coordinate of the box's bottom right corner
     """
     current_directory = os.getcwd()#fetch current repository
-    with open(current_directory+'/Botsort/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
+    with open(current_directory+'/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
     ret_df = get_features_single(single_img=image, yxyx = yxyx)
     #ret_df.drop(['frame','cls'], axis = 1, inplace = True)
     ret_df['inter_objects_occlusion'] = occlusion
-    with open(current_directory+'/Botsort/pretrained_tools/X_train.pkl', 'rb') as f:
+    print(ret_df.columns.unique())
+    with open(current_directory+'/pretrained_tools/X_train.pkl', 'rb') as f:
         X_train = pickle.load(f)
     explainer = shap.Explainer(loaded_model,X_train)
     label = loaded_model.predict(ret_df)[0]

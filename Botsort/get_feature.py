@@ -12,6 +12,7 @@ import os
 from PIL import Image
 import PIL
 from skimage import util
+from prepare_training import output_df
 
 #tested!
 def get_features_single(
@@ -137,7 +138,7 @@ def get_features_multi(
         old_data_path (optional): the features csv file to which the new feature rows is added to
         save: whether to save the output features csv file. default is True
     Return:
-        pandas dataframe containing the extracted of all images in the given path
+        pandas dataframe containing the extracted features of all images in the given path
     """
     im_w = 0
     im_h = 0
@@ -160,7 +161,7 @@ def get_features_multi(
         if file.endswith(".png"):
             im_h, im_w, _ = cv2.imread(multi_img_path + "/" + file).shape
             break
-
+    temp_df = pd.DataFrame()
     for key, value in data.items():
         for v in value:
             if "class" in v.keys() and v["class"] == 1:
@@ -270,8 +271,8 @@ def get_features_multi(
                 "ymin": ymin / im_h,
                 "ymax": ymax / im_h,
             }
-            res = pd.concat([res, pd.DataFrame([dict])], ignore_index=True)
-
+            df = pd.DataFrame([dict])
+            temp_df = pd.concat([temp_df, df], ignore_index=True)
             # show wrong tracked boxes
             # if v["class"] == 1 :
             #     image = cv2.imread(
@@ -281,9 +282,8 @@ def get_features_multi(
             #     cv2.imshow("Image", target)
             #     cv2.waitKey(0)
             #     # break
-
-    if save:
-        res.to_csv(output_path + "data_feature.csv", index=False)
+    temp_df = output_df(temp_df)
+    res = pd.concat([res, temp_df], ignore_index=True)
     cv2.destroyAllWindows()
     return res
 

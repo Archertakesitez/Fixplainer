@@ -2,6 +2,7 @@ from get_feature import get_features_multi
 from prepare_training import make_classifier_custom
 import argparse
 import os
+
 #SUB ENTRY FILE (loading custom model)
 #tested!
 def labeled_json_to_model(multi_img_path: str,
@@ -19,8 +20,11 @@ def labeled_json_to_model(multi_img_path: str,
         save: whether you want to save the csv file as output. Default is true
     """
     df = get_features_multi(multi_img_path=multi_img_path, labeled_json_path=labeled_json_path,
-                            old_data_path=old_data_path, save=save)
-    make_classifier_custom(df = df)
+                            old_data_path=old_data_path)
+    if save:
+        df.to_csv("data_feature.csv")
+    print(df.columns.unique())
+    make_classifier_custom(df=df)
 
 #tested!
 def main():

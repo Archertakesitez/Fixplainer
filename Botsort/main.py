@@ -1,4 +1,4 @@
-from Botsort.explain import make_interface
+from explain import make_interface
 
 
 if __name__ == "__main__":

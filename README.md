@@ -7,6 +7,11 @@
 </p>
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
 
+## Highlights
+- multiple YOLOv8 pretrained models support
+- multiple SHAP plot type support
+- functions to train on your own videos
+
 ## Abstract
 Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of
 multi-object tracking (MOT) technologies within densely populated urban settings. Despite notable strides in the field of MOT, current

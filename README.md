@@ -2,7 +2,9 @@
 > [**Fixplainer: Failure Explainer for Multiple Object Tracking (MOT)**](https://drive.google.com/file/d/1EUnTP8E9paZQn6ERtoMdSVkU1R0cOo92/view?usp=sharing)
 > 
 > Sunny Yang, Pu Wang, Mike Pan, Erchi Zhang
-
+<p align = "center">
+      <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/fixplainer_GUI.png" alt="FixplainerGUI" width="600"/>
+</p>
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
 ## Abstract
 Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of

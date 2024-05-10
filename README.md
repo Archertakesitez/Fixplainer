@@ -6,6 +6,7 @@
       <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/fixplainer_GUI.png" alt="FixplainerGUI" width="600"/>
 </p>
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
+
 ## Abstract
 Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of
 multi-object tracking (MOT) technologies within densely populated urban settings. Despite notable strides in the field of MOT, current

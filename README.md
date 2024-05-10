@@ -8,6 +8,7 @@
 Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine Learning
 
 ## Highlights
+- straight-forward GUI
 - multiple YOLOv8 pretrained models support
 - multiple SHAP plot type support
 - functions to train on your own videos

@@ -8,17 +8,8 @@ Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine L
 Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of
 multi-object tracking (MOT) technologies within densely populated urban settings. Despite notable strides in the field of MOT, current
 algorithms face considerable challenges when tasked with monitoring numerous objects simultaneously, particularly in the congested
-and intricate environments of major metropolitan areas. Traditional methodologies, such as DeepSORT, BoT-SORT, ByteTrack, and
-StrongSORT, have consistently demonstrated performance limitations under these crowded conditions, a problem exacerbated by
-insufficient datasets and methodologies that fail to adequately represent the diverse and dynamic nature of urban spaces. To address
-these shortcomings, our research employs the StreetAware dataset, an expansive collection of multimodal urban scene recordings
-specifically from Brooklyn, NY. This dataset provides a rich basis for examining the specific challenges and demands of urban MOT
-applications. Our project aims to thoroughly analyze the failure patterns of existing MOT techniques by focusing on understanding
-tracking failures and the various conditions that contribute to tracking inaccuracies. The objectives of our study include a detailed
-examination of the failure modes encountered in MOT applications and the development of an advanced visualization tool that aids in
-understanding these failures. Through this comprehensive analysis, we seek to contribute significantly to the field by developing more
-robust MOT solutions that can better manage the complexities of urban environments, thereby supporting safer and more efficient
-urban mobility.
+and intricate environments of major metropolitan areas. Our project aims to thoroughly analyze the failure patterns of existing MOT techniques by focusing on understanding
+tracking failures and the various conditions that contribute to tracking inaccuracies. 
 ## Training Set Description
 ### Dataset Source: [StreetAware: A High-Resolution Synchronized Multimodal Urban Scene Dataset](https://drive.google.com/drive/u/1/folders/1BPtiIF8gBOoZANAGkwDjJUYakpCUYHM1)
 The StreetAware dataset is a high-resolution synchronized multimodal urban scene dataset containing more than 8 hours of recordings of busy intersections in Brooklyn, NY.

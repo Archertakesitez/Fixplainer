@@ -7,7 +7,9 @@ from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import train_test_split
 from collections import Counter
 import os
-from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #tested!
 def make_classifier_test(csv_path = "data_feature.csv")->None:
@@ -40,12 +42,57 @@ def make_classifier_test(csv_path = "data_feature.csv")->None:
         pickle.dump(X, f)
 
     preds = model.predict(X_test)
-
+    probs = model.predict_proba(X_test)[:, 1]
     # Compute the confusion matrix
     conf_matrix = confusion_matrix(y_test, preds)
+    auc = roc_auc_score(y_test, probs)
     print(conf_matrix)
     print("Accuracy:", accuracy_score(y_test, preds))
     print("F1 Score:", f1_score(y_test, preds))
+    print("AUC:",auc)
+    """
+    # ROC Curve
+    fpr, tpr, thresholds = roc_curve(y_test, probs)
+    plt.plot(fpr, tpr, color='darkorange', label=f'ROC curve (area = {auc:.2f})')
+    plt.plot([0, 1], [0, 1], color='navy', linestyle='--')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic')
+    plt.legend(loc="lower right")
+    plt.show()
+    """
+    # Set up the matplotlib figure and axes
+    fig, ax = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Plot non-normalized confusion matrix
+    plot_confusion_matrix(conf_matrix, classes=['Negative', 'Positive'], subplot=ax[0], normalize=False)
+
+    # Plot normalized confusion matrix
+    plot_confusion_matrix(conf_matrix, classes=['Negative', 'Positive'], subplot=ax[1], normalize=True)
+
+    plt.tight_layout()
+    plt.show()
+
+
+# Function to plot confusion matrix
+def plot_confusion_matrix(cm, classes, subplot, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
+    """
+    This function plots the confusion matrix on a specified subplot axis.
+    Normalization can be applied by setting `normalize=True`.
+    """
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        subplot.set_title('Normalized ' + title)
+    else:
+        subplot.set_title('Non-Normalized ' + title)
+
+    sns.heatmap(cm, ax=subplot, annot=True, fmt=".2f" if normalize else "d", cmap=cmap, cbar=True, square=True)
+    subplot.set_xlabel('Predicted labels')
+    subplot.set_ylabel('True labels')
+    subplot.set_xticklabels(classes)
+    subplot.set_yticklabels(classes)
+    #subplot.set_yticks(np.arange(len(classes))+0.5, rotation=0, va="center")
+
 
 
 #tested!

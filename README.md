@@ -50,7 +50,9 @@ Put your image inside run/ folder.
 ```
 
 **2.** 
-Execute main.py, write the **first argument** as your image's path, the **second argument** as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, the **--scale argument** (optional) as the scale you want your image to be shown in your screen, and the **--plot_type argument** (optional) as the SHAP plot type you want to generate (either "waterfall" or "decision"). If you want to use your own pretrained model, you need to include the **--model argument** (optional) as the path for your pretrained model as well as the **--X_train argument** (optional) as the path for your X_train corresponding to your pretrained model. For example, if you want to analyze test1.png, where no detected objects are present inside the box area you will be drawing, you can run:
+Execute main.py, write the **first argument** as your image's path, the **second argument** as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, the **--scale argument** (optional) as the scale you want your image to be shown in your screen, and the **--plot_type argument** (optional) as the SHAP plot type you want to generate (either "waterfall" or "decision"). If you want to use your own pretrained model, you need to include the **--model argument** (optional) as the path for your pretrained model as well as the **--X_train argument** (optional) as the path for your X_train corresponding to your pretrained model. 
+
+For example, if you want to analyze test1.png, where no detected objects are present inside the box area you will be drawing, you can run:
 ```
 cd run
 python main.py test1.png 0

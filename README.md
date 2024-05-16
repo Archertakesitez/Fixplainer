@@ -55,9 +55,9 @@ Execute main.py, write the **first argument** as your image's path, the **second
 cd run
 python main.py test1.png 0
 ```
-   If you want to analyze test.png, where one detected objects are present inside the box area you will be drawing, and you want to scale the image down to 0.5*its original size, with decision plot generating, you can run:
+   If you want to analyze test1.png, where one detected objects are present inside the box area you will be drawing, and you want to scale the image down to 0.5*its original size, with decision plot generating, you can run:
 ```
-python main.py test.png 1 --scale 0.5 --plot_type decision
+python main.py test1.png 1 --scale 0.5 --plot_type decision
 ```
 Then the GUI window will show in the scale you acquired.
 

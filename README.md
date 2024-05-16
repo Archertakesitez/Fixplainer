@@ -74,7 +74,7 @@ Then the GUI window will show in the scale you acquired.
 
 ## Additional Functions
 Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset(videos) and annotate your own data!
-## Annotate your own data:
+### 1. Annotate your own data:
 gen_box.py allows you to upload your own videos for training purposes, and will generate Json file for you annotate your own data.<br>
 Execute gen_box.py, write the **first argument** as your video's path, the **second argument** as the output path for your Json file to be annotated, the **third argument** (optional, '--start_time') as the second you want to begin truncating your video, the **fourth argument** (optional, '--end_time') as the second you want to finish truncating your video, the **fifth argument** (optional, '--frame_extract') as the frequency you want to save each video frame, i.e., in how many video frames you do want to save one frame, and the **sixth argument** (optional, '--model_type') as the YOLO pretrained object detector (select from 'x', 'n', 's') you want to apply on your video.  For example, if you have uploaded a video with the path run/video.mp4, and you want to output the generated Json file for annotation to a directory output/, saving a video frame for each three video frames, you can run:
 ```
@@ -82,7 +82,7 @@ cd run
 python gen_box.py video.mp4 output/ --frame_extract 3
 ```
 And then you can check your Json file generated for your video.mp4 under the output/ folder.
-
+### 2. Save your own model
 
 ## Authors 🔥
 - **[Sunny Yang](https://github.com/crimsonsunny22)**

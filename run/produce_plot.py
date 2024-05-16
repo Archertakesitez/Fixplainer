@@ -10,29 +10,28 @@ from get_feature import get_features_single
 import PIL
 
 #tested!
-def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int, plot_type = "waterfall")->None:
+def make_SHAP(yxyx:list[float], image:PIL.Image.Image, occlusion:int, plot_type = "waterfall", model_path = "pretrained_tools/pretrained_xgboost.pkl", X_train_path = "pretrained_tools/X_train.pkl")->None:
     """
     This function aims to extract features from the box plotted by the user in GUI,
     and use the pretrained XGBoost model to make prediction for whether the object in the box could 
-    be successfully tracked or not, and then use SHAP waterfall plot to explain which feature
+    be successfully tracked or not, and then use SHAP waterfall/decision plot to explain which feature
     contributes to the failure/success of tracking.
     
     Args:
-        image_width: width of the image uploaded
-        image_height: height of the image uploaded
-        topx: x-coordinate of the box's top left corner
-        topy: y-coordinate of the box's top left corner
-        botx: x-coordinate of the box's bottom right corner
-        boty: y-coordinate of the box's bottom right corner
+        yxyx: list containing topx, topy, botx, boty coordinates of the box in the image
+        image: the image uploaded by user
+        occlusion: number of inter-objects occlusion
+        plot_type: waterfall or decision plot
+        model_path: path of pretrained model the user wants to use
     """
     current_directory = os.getcwd()#fetch current repository
-    with open(current_directory+'/pretrained_tools/pretrained_xgboost.pkl', 'rb') as f:
+    with open(current_directory+f'/{model_path}', 'rb') as f:
         loaded_model = pickle.load(f)
     ret_df = get_features_single(single_img=image, yxyx = yxyx)
     #ret_df.drop(['frame','cls'], axis = 1, inplace = True)
     ret_df['inter_objects_occlusion'] = occlusion
     print(ret_df.columns.unique())
-    with open(current_directory+'/pretrained_tools/X_train.pkl', 'rb') as f:
+    with open(current_directory+f'/{X_train_path}', 'rb') as f:
         X_train = pickle.load(f)
     explainer = shap.Explainer(loaded_model,X_train)
     label = loaded_model.predict(ret_df)[0]

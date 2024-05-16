@@ -11,7 +11,7 @@ class ImageSelector:
     and yield SHAP explanation for while their selected box cannot or can be successfully tracked
     by YOLOv8+BoT-SORT
     """
-    def __init__(self, root, image_path:str, occlusion:int, scale=1, plot_type = "waterfall")->None:
+    def __init__(self, root, image_path:str, occlusion:int, scale=1, plot_type = "waterfall", model_path = "pretrained_tools/pretrained_xgboost.pkl", X_train_path = "pretrained_tools/X_train.pkl")->None:
         """
         set args and call _init_ui.
 
@@ -28,6 +28,8 @@ class ImageSelector:
         self.root.title("Fixplainer")
         self.occlusion = occlusion
         self.plot_type = plot_type
+        self.model_path = model_path
+        self.X_train_path = X_train_path
         self._init_ui()
 
     def _init_ui(self):
@@ -85,7 +87,7 @@ class ImageSelector:
         self.update_sel_rect(event)
         #print(f"Coordinates stored: Top-Left ({self.topx}, {self.topy}) Bottom-Right ({self.botx}, {self.boty})")
         #print(f"{self.img.width()}, {self.img.height()}")
-        make_SHAP(yxyx = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion, plot_type=self.plot_type)
+        make_SHAP(yxyx = [self.topx, self.topy, self.botx, self.boty], image = self.resized, occlusion = self.occlusion, plot_type = self.plot_type, model_path = self.model_path, X_train_path = self.X_train_path)
         
 
 def make_interface():
@@ -98,13 +100,16 @@ def make_interface():
     parser.add_argument('occlusion', type=int, help = 'how many objects that can be detected are overlapping with the box you want to draw?')
     parser.add_argument('--scale', type = float, default = 1, help='in which scale do you want your image to be shown?')
     parser.add_argument('--plot_type', default = "waterfall", help='the shap plot you want to produce--waterfall or decision? default is waterfall plot')
-
+    parser.add_argument('--model', default = 'pretrained_tools/pretrained_xgboost.pkl', help = 'which pretrained model you want to use')
+    parser.add_argument('--X_train', default = 'pretrained_tools/X_train.pkl', help = 'X_train corresponding to your pretrained model')
     args = parser.parse_args()
     image_path = args.image_path
     occlusion = args.occlusion
     scale = args.scale
     plot_type = args.plot_type
+    model_path = args.model
+    X_train_path = args.X_train
     root = tk.Tk()
-    app = ImageSelector(root=root, image_path=image_path, occlusion=occlusion, scale = scale, plot_type = plot_type)
+    app = ImageSelector(root = root, image_path = image_path, occlusion = occlusion, scale = scale, plot_type = plot_type, model_path = model_path, X_train_path = X_train_path)
     root.mainloop()
 

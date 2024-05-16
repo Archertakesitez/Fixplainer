@@ -50,7 +50,7 @@ Put your image inside run/ folder.
 ```
 
 **2.** 
-Execute main.py, write the **first argument** as your image path, the **second argument** as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, the **third argument** (optional) as the scale you want your image to be shown in your screen, and the **fourth argument** (optional) as the SHAP plot type you want to generate (either "waterfall" or "decision"). For example, if you want to analyze test1.png, where no detected objects are present inside the box area you will be drawing, you can run:
+Execute main.py, write the **first argument** as your image's path, the **second argument** as the inter-objects occlusion value, i.e., the number of objects to be tracked that is overlapped inside the box you will be plotting, the **third argument** (optional) as the scale you want your image to be shown in your screen, and the **fourth argument** (optional) as the SHAP plot type you want to generate (either "waterfall" or "decision"). For example, if you want to analyze test1.png, where no detected objects are present inside the box area you will be drawing, you can run:
 ```
 cd run
 python main.py test1.png 0
@@ -72,10 +72,16 @@ Then the GUI window will show in the scale you acquired.
       <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example3.png" alt="example3" width="600"/>
 </p>
 
-### Additional Functions
-Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset and annotate your own data!
-**1.** Annotate your own data:
-
+## Additional Functions
+Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset(videos) and annotate your own data!
+## Annotate your own data:
+gen_box.py allows you to upload your own videos for training purposes, and will generate Json file for you annotate your own data.<br>
+Execute gen_box.py, write the **first argument** as your video's path, the **second argument** as the output path for your Json file to be annotated, the **third argument** (optional, '--start_time') as the second you want to begin truncating your video, the **fourth argument** (optional, '--end_time') as the second you want to finish truncating your video, the **fifth argument** (optional, '--frame_extract') as the frequency you want to save each video frame, i.e., in how many video frames you do want to save one frame, and the **sixth argument** (optional, '--model_type') as the YOLO pretrained object detector (select from 'x', 'n', 's') you want to apply on your video.  For example, if you have uploaded a video with the path run/video.mp4, and you want to output the generated Json file for annotation to a directory output/, saving a video frame for each three video frames, you can run:
+```
+cd run
+python gen_box.py video.mp4 output/ --frame_extract 3
+```
+And then you can check your Json file generated for your video.mp4 under the output/ folder.
 
 
 ## Authors 🔥

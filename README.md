@@ -76,7 +76,10 @@ Then the GUI window will show in the scale you acquired.
 Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset(videos) and annotate your own data. This allows you to prepare specific models to better analyze specific urban scenes, or even other type of scenes.
 ### 1.Generate Data to be Annotated From Your Video
 gen_box.py allows you to upload your own videos for training purposes, and will generate Json file for you annotate your own data.<br>
-Execute gen_box.py, write the **first argument** as your video's path, the **second argument** as the output path for your Json file to be generated for annotation, the **--start_time argument** (optional) as the second you want to begin truncating your video, the **--end_time argument** (optional) as the second you want to finish truncating your video, the **--frame_extract argument** (optional) as the frequency you want to save each video frame, i.e., in how many video frames you do want to save one frame, and the **--model_type argument** (optional) as the YOLO pretrained object detector (select from 'x', 'n', 's') you want to apply on your video.  For example, if you have uploaded a video with the path run/video.mp4, and you want to output the generated Json file for annotation to a directory output/, saving a video frame for each three video frames, you can run:
+
+Execute gen_box.py, write the **first argument** as your video's path, the **second argument** as the output path for your Json file to be generated for annotation, the **--start_time argument** (optional) as the second you want to begin truncating your video, the **--end_time argument** (optional) as the second you want to finish truncating your video, the **--frame_extract argument** (optional) as the frequency you want to save each video frame, i.e., in how many video frames you do want to save one frame, and the **--model_type argument** (optional) as the YOLO pretrained object detector (select from 'x', 'n', 's') you want to apply on your video.  
+
+For example, if you have uploaded a video with the path run/video.mp4, and you want to output the generated Json file for annotation to a directory output/, saving a video frame for each three video frames, you can run:
 ```
 cd run
 python gen_box.py video.mp4 output/ --frame_extract 3

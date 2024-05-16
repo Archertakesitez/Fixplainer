@@ -26,7 +26,7 @@ The StreetAware dataset is a high-resolution synchronized multimodal urban scene
 ### Installation
 **1.** Set up with conda environment:
 ```
-conda create -n fixplainer_env python=3.9
+conda create --name fixplainer_env python=3.9
 conda activate fixplainer_env
 ```
 
@@ -34,7 +34,7 @@ conda activate fixplainer_env
 ```
 git clone git@github.com:Archertakesitez/Fixplainer.git
 cd Fixplainer
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Then you are ready to go!

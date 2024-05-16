@@ -15,10 +15,9 @@ Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine L
 
 ## Abstract
 Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of
-multi-object tracking (MOT) technologies within densely populated urban settings. Despite notable strides in the field of MOT, current
-algorithms face considerable challenges when tasked with monitoring numerous objects simultaneously, particularly in the congested
-and intricate environments of major metropolitan areas. Our project aims to thoroughly analyze the failure patterns of existing MOT techniques by focusing on understanding
-tracking failures and the various conditions that contribute to tracking inaccuracies. 
+multi-object tracking (MOT) technologies within densely populated urban settings. It is a GUI tool that could generate SHAP explanation plots for the objects that the users
+drawn on a video frame.
+
 ## Training Set Description
 ### Dataset Source: [StreetAware: A High-Resolution Synchronized Multimodal Urban Scene Dataset](https://drive.google.com/drive/u/1/folders/1BPtiIF8gBOoZANAGkwDjJUYakpCUYHM1)
 The StreetAware dataset is a high-resolution synchronized multimodal urban scene dataset containing more than 8 hours of recordings of busy intersections in Brooklyn, NY.
@@ -72,6 +71,11 @@ Then the GUI window will show in the scale you acquired.
 <p align = "center">
       <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example3.png" alt="example3" width="600"/>
 </p>
+
+### Additional Functions
+Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset!
+
+
 
 ## Authors 🔥
 - **[Sunny Yang](https://github.com/crimsonsunny22)**

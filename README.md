@@ -72,7 +72,7 @@ Then the GUI window will show in the scale you acquired.
       <img src="https://github.com/Archertakesitez/Fixplainer/blob/main/readme_sources/example3.png" alt="example3" width="600"/>
 </p>
 
-## Annotate and Train on Your Own Dataset
+## Customer Training 👑
 Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset(videos) and annotate your own data. This allows you to prepare specific models to better analyze specific urban scenes, or even other type of scenes.
 ### 1. Generate Data to be Annotated From your Video:
 gen_box.py allows you to upload your own videos for training purposes, and will generate Json file for you annotate your own data.<br>

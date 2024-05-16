@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 Then you are ready to go!
 
-### Demo
+### Demo - Main Function
 **1.** 
 Put your image inside run/ folder.
 ```
@@ -73,7 +73,8 @@ Then the GUI window will show in the scale you acquired.
 </p>
 
 ### Additional Functions
-Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset!
+Besides using our pre-trained models for generating SHAP plots to analzye your images, you can use our functions to train on your own dataset and annotate your own data!
+**1.** Annotate your own data:
 
 
 

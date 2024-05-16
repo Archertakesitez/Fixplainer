@@ -41,11 +41,13 @@ Then you are ready to go!
 
 ### Demo
 **1.** 
-Put your image inside Fixplainer folder.
+Put your image inside run/ folder.
 ```
 <Fixplainer>
       │ 
-      └── {your_image}
+      └── <run>
+            │ 
+            └── {your_image}
 ```
 
 **2.** 

@@ -14,9 +14,9 @@ Final Project for NYU's graduate course, DS-GA 3001: Visualization for Machine L
 - functions to train on your own videos
 
 ## Abstract
-Fixplainer delves into the complexities of urban dynamics by concentrating on the enhancement and understanding of
+Fixplainer delves into the complexities of urban dynamics by concentrating on the understanding of
 multi-object tracking (MOT) technologies within densely populated urban settings. It is a GUI tool that could generate SHAP explanation plots for the objects that the users
-drawn on a video frame.
+drawn on a video frame they uploaded.
 
 ## Training Set Description
 ### Dataset Source: [StreetAware: A High-Resolution Synchronized Multimodal Urban Scene Dataset](https://drive.google.com/drive/u/1/folders/1BPtiIF8gBOoZANAGkwDjJUYakpCUYHM1)

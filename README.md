@@ -1,5 +1,5 @@
 # Fixplainer: Failure Explainer for Multiple Object Tracking (MOT)
-> [**Fixplainer: Failure Explainer for Multiple Object Tracking (MOT)**](https://drive.google.com/file/d/1EUnTP8E9paZQn6ERtoMdSVkU1R0cOo92/view?usp=sharing)
+> [**Paper**](https://drive.google.com/file/d/1EUnTP8E9paZQn6ERtoMdSVkU1R0cOo92/view?usp=sharing)
 > 
 > Sunny Yang, Pu Wang, Mike Pan, Erchi Zhang
 <p align = "center">

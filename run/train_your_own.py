@@ -23,7 +23,7 @@ def labeled_json_to_model(multi_img_path: str,
                             old_data_path=old_data_path)
     if save:
         df.to_csv("data_feature.csv")
-    print(df.columns.unique())
+    
     make_classifier_custom(df=df)
 
 #tested!
